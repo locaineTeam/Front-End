@@ -1,13 +1,27 @@
-import logo from './logo.svg';
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
+import { Home } from "./components/Home";
+import { Login } from "./components/Login";
+import { Register } from "./components/Register";
 
 function App() {
   return (
-    <div className="App">
-      <h1>
-        ietiProyecto
-      </h1>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/register">
+          <Register/>
+        </Route>
+        <Route path="/home">
+          <Home/>
+        </Route>
+        <Route path="/">
+          <Login/>
+        </Route>
+        <Route>
+          <div>Not found</div>
+        </Route>
+      </Switch>
+    </Router>
   );
 }
 
