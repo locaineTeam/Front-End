@@ -48,7 +48,7 @@ export const Login = () => {
         setData((prev) => ({ ...prev, token: newToken }));
         localStorage.setItem("IETItoken", newToken);
         history.push("/home");
-    }
+    };
 
     const handleEmailChange = (e) => {
         const value = e.target.value;
@@ -63,11 +63,7 @@ export const Login = () => {
     const handleRegisterClick = () => {
         const url = "/register";
         history.push(url);
-    }
-
-    const test = () => {
-        console.log("TOKEN: "+token);
-    }
+    };
 
     return (
         <>
@@ -79,7 +75,6 @@ export const Login = () => {
             <label>{msj}</label>
         </form>
         <button onClick={handleRegisterClick}>Registrarse</button>
-        <button onClick={test}>Test</button>
         </>
     );
 }
