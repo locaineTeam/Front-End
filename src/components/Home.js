@@ -15,7 +15,7 @@ export class Home extends Component{
         this.request =  this.request.bind(this);        
         this.match =  this.match.bind(this);
         this.state={
-            genres:[],
+            genders:[],
             preferencias:"",
             modalTitle:""
         }
@@ -51,18 +51,21 @@ export class Home extends Component{
             modalTitle:"Edit Preferences",
             preferencias:""
         });
-    }
-
-    componentDidMount(){
         this.refreshList();
     }
-
+    
     refreshList(){
-
+        fetch(variables.LOCAL_URL+'v1/user/preferences')
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+            this.setState({genders:data});
+        });
         
     }
 
     otherClick(){
+        
 
     }
     changePreference =(e)=>{
@@ -71,7 +74,7 @@ export class Home extends Component{
 
     render(){
         const {
-            genres,
+            genders,
             preferencias,
             modalTitle
         }=this.state;
@@ -188,15 +191,9 @@ export class Home extends Component{
                             <select className="form-select"
                             onChange={this.changePreference}
                             value={preferencias}>
-                                <option key="1">
-                                    "Hombre"
-                                </option>
-                                <option key="2">
-                                    "Mujer"
-                                </option>
-                                <option key="3">
-                                    "Ambos"
-                                </option>
+                                {genders.map(gen=><option key={gen}>
+                                    {gen}
+                                </option>)}
                             </select>
                         </div>
 

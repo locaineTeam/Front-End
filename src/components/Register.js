@@ -39,7 +39,7 @@ export const Register = () => {
             password: password
         };
 
-        fetch(variables.LOCAL_URL+"box/user", {
+        fetch(variables.LOCAL_URL+"v1/user", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
