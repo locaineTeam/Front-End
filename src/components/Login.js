@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
+import {variables} from "../providers/Variables";
 
 export const Login = () => {
     const { data, setData } = useData();
@@ -20,7 +21,7 @@ export const Login = () => {
             password: password
         };
 
-        fetch("https://locaine.herokuapp.com/v1/auth", {
+        fetch(variables.LOCAL_URL+"v1/auth", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
