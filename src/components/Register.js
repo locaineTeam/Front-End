@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
+import {variables} from "../providers/Variables";
 
 export const Register = () => {
 	
@@ -38,7 +39,7 @@ export const Register = () => {
             password: password
         };
 
-        fetch("https://locaine.herokuapp.com/box/user", {
+        fetch(variables.LOCAL_URL+"box/user", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
