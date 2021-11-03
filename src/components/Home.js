@@ -50,7 +50,7 @@ export const Home = () => {
             console.log(data);
             setGenders(data);
         });
-        
+
     };
 
     const otherClick = () =>{
@@ -66,6 +66,7 @@ export const Home = () => {
     const changePreference =(e)=>{
         this.setState({preferences:e.value});
     };
+
 
     return(
         <div className="container-fluid">
@@ -189,7 +190,6 @@ export const Home = () => {
                                 <h5 className="modal-title">{modalTitle}</h5>
                                 <button type="button" className="btn-close" data-bs-dismiss="modal" aria-label="Close"/>
                             </div>
-
                             <div className="modal-body">
                                 <div className="input-group mb-3">
                                     <span className="input-group-text">Editar Caracteristicas</span>
@@ -207,6 +207,7 @@ export const Home = () => {
                                         Update
                                 </button>
                             </div>
+
                         </div>
                     </div> 
                 </div>
