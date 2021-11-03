@@ -21,7 +21,7 @@ export const Login = () => {
             password: password
         };
 
-        fetch(variables.LOCAL_URL+"v1/auth", {
+        fetch(variables.API_URL+"v1/auth", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"

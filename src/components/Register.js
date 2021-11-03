@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
 import {variables} from "../providers/Variables";
@@ -15,19 +15,15 @@ export const Register = () => {
     const [password, setPassword] = useState("");
     const [msj, setMsj] = useState("");
     const [gender, setGender] = useState("");
+    const [genderData, setGenders] = useState([]);
 
-    const genderData = [
-        {
-            option: "Hombre"
-        },
-        {
-            option: "Mujer"
-        },
-        {
-            option: "Otro"
-        }
-    ];
-	
+    useEffect(() => {fetch(variables.API_URL+'v1/user/genders')
+        .then(response=>response.json())
+        .then(data=>{
+            console.log(data);
+            setGenders(data);
+        })},[]);
+
 	const handleSubmit = (event) => {
         event.preventDefault();
 
@@ -37,7 +33,7 @@ export const Register = () => {
             genero: gender,
             email: email,
             password: password
-        };
+        };        
 
         fetch(variables.LOCAL_URL+"v1/user", {
             method: "POST",
@@ -103,7 +99,7 @@ export const Register = () => {
             <select name="gender" onChange={handleGenderChange}>
                 {genderData.map((g) =>{
                     return (
-                        <option value={g.option}>{g.option}</option>
+                        <option key={g.toString()}>{g}</option>
                     );
                 })}
             </select>
