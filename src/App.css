@@ -1,0 +1,12 @@
+.LoginContainer {
+    min-height: 100vh;
+}
+
+.LoginSubContainer {
+    padding: 20px;
+    width: 60%;
+}
+
+.DivText {
+    text-align: center;
+}

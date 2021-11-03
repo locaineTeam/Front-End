@@ -11,6 +11,7 @@ import { Login } from "./components/Login";
 import { Register } from "./components/Register";
 import PrivateRoute from "./routing/PrivateRoute";
 import PublicRoute from "./routing/PublicRoute";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 function App() {
   return (

@@ -1,11 +1,11 @@
 import { useState } from "react";
+import { Col, FloatingLabel, Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
 import {variables} from "../providers/Variables";
 
 export const Login = () => {
     const { data, setData } = useData();
-    const token = data.token;
 
     const history = useHistory();
 
@@ -67,15 +67,35 @@ export const Login = () => {
     };
 
     return (
-        <>
-        <h1>Iniciar Sesion</h1>
-        <form onSubmit={handleSubmit}>
-            <input type="text" placeholder="email" value={email} onChange={handleEmailChange}></input>
-            <input type="password" placeholder="password" value={password} onChange={handlePwdChange}></input>
-            <button>Iniciar Sesion</button>
-            <label>{msj}</label>
-        </form>
-        <button onClick={handleRegisterClick}>Registrarse</button>
-        </>
+        <div className="LoginContainer d-flex align-items-center justify-content-center">
+            <div className="LoginSubContainer border">
+                <Col>
+                    <Form.Label>{msj}</Form.Label>
+                    <Form onSubmit={handleSubmit}>
+                        <Form.Group className="mb-3">
+                            <FloatingLabel label="Correo Electronico">
+                                <Form.Control type="email" placeholder="Email Address" value={email} onChange={handleEmailChange}></Form.Control>
+                            </FloatingLabel>
+                        </Form.Group>
+                        <Form.Group className="mb-3">
+                            <FloatingLabel label="Contraseña">
+                                <Form.Control type="password" placeholder="Password" value={password} onChange={handlePwdChange}></Form.Control>
+                            </FloatingLabel>
+                        </Form.Group>
+                        <div className="d-grid gap-2 mb-3">
+                            <Button variant="primary" size="lg" type="submit">
+                                Iniciar Sesion
+                            </Button>
+                        </div>
+                    </Form>
+                    <div className="DivText">
+                        <Form.Label onClick={handleRegisterClick}>
+                            Registrarse
+                        </Form.Label>
+                    </div>
+                </Col>
+            </div>
+        </div>
+        
     );
 }
