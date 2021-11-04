@@ -6,6 +6,7 @@ import {variables} from "../providers/Variables";
 
 export const Login = () => {
     const { data, setData } = useData();
+    const token = data.token;
 
     const history = useHistory();
 
@@ -48,8 +49,19 @@ export const Login = () => {
         const newToken = json.token;
         setData((prev) => ({ ...prev, token: newToken }));
         localStorage.setItem("IETItoken", newToken);
+        fetch(variables.API_URL + "v1/user/email/" + email)
+            .then(response => response.json())
+            .then(json => getUser(json))
+            .catch(err =>{
+                console.log(err);
+            })
+    };
+
+    const getUser = (json) => {
+        setData((prev) => ({ ...prev, user: json}));
+        localStorage.setItem("IETIuser",json);
         history.push("/home");
-    }
+    };
 
     const handleEmailChange = (e) => {
         const value = e.target.value;
