@@ -1,11 +1,30 @@
 import downloade from '../Assets/img/Nicolle Figueroa.jpg';
 import React,{useState} from 'react';
+import { useEffect } from 'react';
 import { variables } from '../providers/Variables';
 export const EditProfile = () => {
-
+    const [photo, setPhoto] = React.useState("");
+    const [Name, setName] = React.useState("");
+    const [Desc, setDesc] = React.useState("");
     const [genders, setGenders] = useState([]);
     const [preferences, setPreferences] = useState("");
     const [modalTitle, setModalTitle] = useState("");
+
+    const getLocalUser = () =>{
+       
+        fetch(variables.API_URL+'v1/user/'+JSON.parse(localStorage.IETIuser).id)
+        .then(response=>response.json())
+        .then(data=>{
+
+            console.log(data);
+     
+            setPhoto(data.photo);
+            setName(data.Name);
+            setDesc(data.Desc);
+            
+        });
+
+    };
     const editPreferences = () => {
         setModalTitle("Edit Preferences");
         setPreferences("");
@@ -27,18 +46,26 @@ export const EditProfile = () => {
     const changePreference =(e)=>{
         this.setState({preferences:e.value});
     };
-    
+    useEffect(()=>{
+
+        getLocalUser();  
+        
+        
+    }, []);
     return ( 
     <div class="container container-small" >
         <><h1>Edit Profile</h1>
+        <h1>{Name}</h1>
         <img 
-            
+            width={600}
             src={downloade} alt="description" />
             <form>
             
                 Descripcion:
                 
-                <textarea   class="form-control"  name="comment" rows="5"></textarea>
+                <textarea   class="form-control"  name="comment" rows="5">
+                    {Desc}
+                </textarea>
             
             <input type="submit" value="Actualizar" />
 
