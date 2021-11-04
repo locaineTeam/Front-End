@@ -23,6 +23,32 @@ label {
    color: #280b4e;
 }
 
+.NavBarHome {
+    background-color:#1c0836;
+}
+
+.HomeContainer {
+    min-height: 100vh;
+    background-color:#611db9;
+}
+
+.HomeItemsContainer{
+    margin: auto;
+    padding: 70px 0;
+    background-color:#ffffff;
+}
+@media (min-width: 320px) {
+    .HomeItemsContainer {
+        width: 80%;
+    }
+}
+
+@media (min-width: 768px) {
+    .HomeItemsContainer {
+        width: 50%;
+    }
+}
+
 @media (min-width: 320px) {
     .LoginSubContainer {
         width: 80%;
