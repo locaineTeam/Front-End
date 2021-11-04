@@ -22,7 +22,7 @@ export const Login = () => {
             password: password
         };
 
-        fetch(variables.LOCAL_URL+"v1/auth", {
+        fetch(variables.API_URL+"v1/auth", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -49,7 +49,7 @@ export const Login = () => {
         const newToken = json.token;
         setData((prev) => ({ ...prev, token: newToken }));
         localStorage.setItem("IETItoken", newToken);
-        fetch(variables.LOCAL_URL + "v1/user/email/" + email)
+        fetch(variables.API_URL + "v1/user/email/" + email)
             .then(response => response.json())
             .then(json => getUser(json))
             .catch(err =>{
