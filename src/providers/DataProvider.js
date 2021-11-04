@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const localToken = localStorage.getItem("IETItoken");
-const localUser = localStorage.getItem("IETIuser");
+const localUser = JSON.parse(localStorage.getItem("IETIuser"));
 
 export const token = localToken ? localToken : "";
 export const user = localUser ? localUser: {};

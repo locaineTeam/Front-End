@@ -40,7 +40,7 @@ export const Register = () => {
 
         console.log(user);
 
-        fetch(variables.LOCAL_URL + "v1/user", {
+        fetch(variables.API_URL + "v1/user", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
@@ -64,10 +64,7 @@ export const Register = () => {
     };
 
     const register = (json) => {
-        const newToken = json.token;
-        setData((prev) => ({ ...prev, token: newToken }));
-        localStorage.setItem("IETItoken", newToken);
-        history.push("/home");
+        history.push("/");
     }
 
     const handleNameChange = (e) => {

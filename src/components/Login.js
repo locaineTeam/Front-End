@@ -59,7 +59,7 @@ export const Login = () => {
 
     const getUser = (json) => {
         setData((prev) => ({ ...prev, user: json}));
-        localStorage.setItem("IETIuser",json);
+        localStorage.setItem("IETIuser",JSON.stringify(json));
         history.push("/home");
     };
 
