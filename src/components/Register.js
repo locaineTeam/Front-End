@@ -96,8 +96,22 @@ export const Register = () => {
     }
 
     return (
+        <>
+        <style>
+            {`
+                .btn-login {
+                    background-color: #280b4e;
+                    color: #ffffff;
+                }
+
+                .btn-login:hover {
+                    background-color: #1c0836;
+                    color: #ffffff;
+                }
+            `}
+        </style>
         <div className="LoginContainer d-flex align-items-center justify-content-center">
-            <div className="LoginSubContainer border">
+            <div className="LoginSubContainer rounded">
                 <Col>
                     <Form.Label>{msj}</Form.Label>
                     <Form onSubmit={handleSubmit}>
@@ -134,7 +148,7 @@ export const Register = () => {
                             </FloatingLabel>
                         </Form.Group>
                         <div className="d-grid gap-2 mb-3">
-                            <Button variant="primary" size="lg" type="submit">
+                            <Button variant="login" size="lg" type="submit">
                                 Registrarse
                             </Button>
                         </div>
@@ -142,6 +156,6 @@ export const Register = () => {
                 </Col>
             </div>
         </div>
-        
+        </>
     );
 }
