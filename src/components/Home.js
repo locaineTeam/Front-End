@@ -52,17 +52,12 @@ export const Home = () => {
         fetch(variables.API_URL+'v1/user/preferences')
         .then(response=>response.json())
         .then(data=>{
-            console.log(data);
             setGenders(data);
         });
 
     };
 
     const otherClick = () =>{
-        console.log("----------------------------------------------- OTHER CLICK -------------------");
-        console.log(user);
-        console.log(token);
-        console.log(preferences);
         fetch(variables.LOCAL_URL+'v1/user/'+user.id,
         {
             method:'PUT',
@@ -86,7 +81,7 @@ export const Home = () => {
         })
         .then(res=>res.json())
         .then((result)=>{
-            alert(result);
+            alert("Actualización exitosa");
 
         },(error)=>{
             alert('Failed');
