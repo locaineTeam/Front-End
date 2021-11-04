@@ -1,6 +1,7 @@
 import React,{useState} from 'react';
 import { useHistory } from "react-router";
 import { variables } from '../providers/Variables';
+import { EditFacade } from './EditFacade';
 
 export const Home = () => {
 
