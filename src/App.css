@@ -1,12 +1,27 @@
 .LoginContainer {
     min-height: 100vh;
+    background-color:#611db9;
+    
 }
 
 .LoginSubContainer {
     padding: 20px;
-    width: 60%;
+    background-color:#ffffff;
+   
 }
 
 .DivText {
     text-align: center;
+}
+
+@media (min-width: 320px) {
+    .LoginSubContainer {
+        width: 80%;
+    }
+}
+
+@media (min-width: 768px) {
+    .LoginSubContainer {
+        width: 50%;
+    }
 }
