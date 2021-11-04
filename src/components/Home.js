@@ -1,7 +1,11 @@
 import React,{useState} from 'react';
 import { useHistory } from "react-router";
 import { variables } from '../providers/Variables';
+<<<<<<< HEAD
 import { useData } from "../providers/DataProvider";
+=======
+import { EditFacade } from './EditFacade';
+>>>>>>> 8ef359bfcdb4f67b5d15ee53f4ec764aedf22a7d
 
 export const Home = () => {
 
