@@ -6,6 +6,7 @@ export const EditProfile = () => {
     const [photo, setPhoto] = React.useState("");
     const [Name, setName] = React.useState("");
     const [Desc, setDesc] = React.useState("");
+    const [Pref, setPref] = React.useState("");
     const [genders, setGenders] = useState([]);
     const [preferences, setPreferences] = useState("");
     const [modalTitle, setModalTitle] = useState("");
@@ -17,10 +18,11 @@ export const EditProfile = () => {
         .then(data=>{
 
             console.log(data);
-     
-            setPhoto(data.photo);
-            setName(data.Name);
-            setDesc(data.Desc);
+            setDesc(data.descripcion);
+            setPhoto(data.foto);
+            setName(data.name);
+            setPref(data.preferences);
+            console.log(data.descripcion);
             
         });
 
@@ -56,14 +58,15 @@ export const EditProfile = () => {
     <div class="container container-small" >
         <><h1>Edit Profile</h1>
         <h1>{Name}</h1>
+        <h2>{photo}</h2>
         <img 
-            width={600}
+            width={500}
             src={downloade} alt="description" />
             <form>
             
-                Descripcion:
-                
-                <textarea   class="form-control"  name="comment" rows="5">
+                <h2>Descripcion</h2>
+                {Desc}
+                <textarea   class="form-control"  name="comment" rows="4">
                     {Desc}
                 </textarea>
             
@@ -83,6 +86,7 @@ export const EditProfile = () => {
                 <path fillRule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
                 </svg>
             </button>
+
             <div className="modal fade" id="exampleModal" tabIndex="-1" aria-hidden="true">
                     <div className="modal-dialog modal-lg modal-dialog-centered">
                         <div className="modal-content">
@@ -111,9 +115,11 @@ export const EditProfile = () => {
                         </div>
                     </div> 
                 </div>
+                
 
             
             </>
+            <h2>{Pref}</h2>
             </div>
     );
     
