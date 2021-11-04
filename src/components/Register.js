@@ -19,7 +19,7 @@ export const Register = () => {
     const [genderData, setGenders] = useState([]);
 
     useEffect(() => {
-        fetch(variables.API_URL + 'v1/user/genders')
+        fetch(variables.LOCAL_URL + 'v1/user/genders')
         .then(response => response.json())
         .then(data => {
             console.log(data);
@@ -40,7 +40,7 @@ export const Register = () => {
 
         console.log(user);
 
-        fetch(variables.API_URL + "v1/user", {
+        fetch(variables.LOCAL_URL + "v1/user", {
             method: "POST",
             headers: {
                 "Content-type": "application/json"
