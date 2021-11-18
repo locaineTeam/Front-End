@@ -1,13 +1,11 @@
 .LoginContainer {
     min-height: 100vh;
     background-color:#611db9;
-    
 }
 
 .LoginSubContainer {
     padding: 20px;
     background-color:#ffffff;
-   
 }
 
 .DivText {
@@ -17,10 +15,6 @@
 .btn-login {
     background-color: #1c0836;
     color: #ffffff;
-}
-
-label {
-   color: #280b4e;
 }
 
 .NavBarHome {
@@ -37,26 +31,150 @@ label {
     padding: 70px 0;
     background-color:#ffffff;
 }
+
+ul {
+    list-style: none;
+}
+
+li.li-uni:hover {
+    background-color: #d4d4d4;
+}
+
+/* Header CSS */
+
+.headerContainer {
+    background-color: #1c0836;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    position: fixed;
+}
+
+.headertitle {
+    color: #ffffff;
+}
+
+.inav {
+    font-size: 1.5rem;
+    color: #ffffff;
+}
+
+.inav:hover {
+    color: #611db9;
+}
+
+.nav-link {
+    padding: 0;
+}
+
+.ddnav::after {
+    color: #ffffff;
+}
+
+.ddnav:hover::after {
+    color: #611db9;
+}
+
+/* End Header CSS */
+
+/* Home CSS */
+
+.homepage {
+    background-color: #611db9;
+    min-height: 100vh;
+}
+
+.subHomepage {
+    background-color: #ffffff;
+    margin-top: 60px;
+}
+
+/* End Home CSS */
+
+.profile-container {
+    background-color: #611db9;
+    min-height: 100vh;
+}
+
+.profile-subcontainer {
+    background-color: #ffffff;
+    width: 60%;
+    margin-top: 60px;
+}
+
+.img-border {
+    width: 12rem;
+    height: 12rem;
+    border-radius: 50%;
+    border: 2px solid #1c0836;
+}
+
+.uni-container {
+    background-color: #611db9;
+    min-height: 100vh;
+}
+
+.uni-subcontainer {
+    background-color: #ffffff;
+    width: 80%;
+    margin-top: 60px;
+    display: flex;
+}
+
+.chat{
+    width: 30rem;
+}
+
+.chat-header {
+    background-color: #c29df1;
+    border-top-left-radius: 1rem;
+    border-top-right-radius: 1rem;
+    border: solid 2px #1c0836;
+}
+
+.chat-body {
+    width: 30rem;
+    height: 20rem;
+    border-left: solid 2px #1c0836;
+    border-right: solid 2px #1c0836;
+    background-color: #f2eff5;
+}
+
+.chat-text {
+    background-color: #ffffff;
+}
+
+.chat-footer{
+    background-color: #c29df1;
+    border-bottom-left-radius: 0.5rem;
+    border-bottom-right-radius: 0.5rem;
+    border: solid 2px #1c0836;
+}
+
 @media (min-width: 320px) {
+    .LoginSubContainer {
+        width: 80%;
+    }
+
+    .subHomepage {
+        width: 90%;
+    }
+
     .HomeItemsContainer {
         width: 80%;
     }
 }
 
 @media (min-width: 768px) {
-    .HomeItemsContainer {
+    .LoginSubContainer {
         width: 50%;
     }
-}
 
-@media (min-width: 320px) {
-    .LoginSubContainer {
-        width: 80%;
+    .subHomepage {
+        width: 60%;
     }
-}
 
-@media (min-width: 768px) {
-    .LoginSubContainer {
+    .HomeItemsContainer {
         width: 50%;
     }
 }

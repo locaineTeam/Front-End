@@ -6,7 +6,6 @@ import {variables} from "../providers/Variables";
 
 export const Login = () => {
     const { data, setData } = useData();
-    const token = data.token;
 
     const history = useHistory();
 

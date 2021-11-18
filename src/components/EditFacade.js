@@ -1,7 +1,6 @@
 import download from '../Assets/img/download.jpg';
 import { variables } from '../providers/Variables';
 import React, { useEffect } from 'react';
-import { Col, FloatingLabel, Form, Button } from "react-bootstrap";
 export const EditFacade = () => {
 
     
@@ -39,7 +38,6 @@ export const EditFacade = () => {
             
             <h2>{photo}</h2>
             <img src={download} alt="description" /></><div className="DivText">
-            <h2></h2>
             </div></>
         
     );

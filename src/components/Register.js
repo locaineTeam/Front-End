@@ -1,12 +1,9 @@
 import { useState, useEffect } from "react";
 import { useHistory } from "react-router";
-import { useData } from "../providers/DataProvider";
 import { variables } from "../providers/Variables";
 import { Col, FloatingLabel, Form, Button } from "react-bootstrap";
 
 export const Register = () => {
-
-    const { data, setData } = useData();
 
     const history = useHistory();
 

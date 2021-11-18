@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
 import { Home } from "./components/Home";
-import {EditProfile} from "./components/EditProfile";
+import { Profile } from "./components/Profile";
+import { University } from "./components/University";
 import { EditFacade } from "./components/EditFacade";
 import { Messages } from "./components/Messages";
 import { Request } from "./components/Request";
@@ -19,7 +20,8 @@ function App() {
       <Switch>
         <PublicRoute restricted={true} component={Register} path="/register" />
         <PrivateRoute component={Home} path="/home" />
-        <PrivateRoute component={EditProfile} path="/editProfile" />
+        <PrivateRoute component={Profile} path="/profile/:userId" />
+        <PrivateRoute component={University} path="/university/:universityId"/>
         <PrivateRoute component={EditFacade} path="/editFacade" />
         <PrivateRoute component={Messages} path="/messages" />
         <PrivateRoute component={Request} path="/request" />
