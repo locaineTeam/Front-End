@@ -3,6 +3,8 @@ import { HeaderContent } from "./HeaderContent";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 import { variables } from '../providers/Variables';
+import UploadForm from './UploadForm';
+import ImageGrid from './ImageGrid';
 
 export const Profile = () => {
     
@@ -35,7 +37,12 @@ export const Profile = () => {
                 </div>
                 <div className="d-flex justify-content-center mx-auto">
                     <h3>{name} {lastName} </h3>
-                    <button className="btn btn-primary">Match</button>
+                    <button className="btn btn-primary">Match</button>                    
+                </div>
+
+                <div>
+                    <UploadForm></UploadForm>
+                    <ImageGrid></ImageGrid>
                 </div>
             </div>
         </section>
