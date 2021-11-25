@@ -10,12 +10,11 @@ export const UniDiv = ({ title}) => {
     
     var aux = [];
     aux.push(<li className="border rounded p-3 mb-2 li-uni">
-    <div>
-       <h5>{title}</h5>
-            
-       <button className="btn btn-primary" onClick={handleUniversity}>Entrar</button>
-    </div>
-</li>);
+        <div>
+        <h5>{title}</h5>      
+        <button className="btn btn-primary" onClick={handleUniversity}>Entrar</button>
+        </div>
+    </li>);
 
     return (
         <div>
