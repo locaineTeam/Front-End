@@ -37,7 +37,7 @@ export const Home = () => {
                 $("#statTable > tbody:last").append($(`<tr><td>  <li className="border rounded p-3 mb-2 li-uni">
                 <div>
                     <h5>${info.name}</h5>                
-                    <button className="btn btn-primary" onClick=href(/university/${info.name})>Entrar</button>
+                    <button className="btn btn-primary" onclick="window.location.href='/university/${info.name}'">Entrar</button>
                 </div>
             </li>
                     </td></tr>`))
