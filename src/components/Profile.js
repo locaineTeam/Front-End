@@ -5,12 +5,17 @@ import { useParams } from 'react-router';
 import { variables } from '../providers/Variables';
 import UploadForm from './UploadForm';
 import ImageGrid from './ImageGrid';
+import  Modal  from './Modal';
 
 export const Profile = () => {
     
     const { userId } = useParams();
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
+
+    //Modal picture enlarged variable
+    const [selectedImg, setSelectedImg] = useState(null);
+
 
     const getUser = () => {
         fetch(variables.API_URL+'v1/user/'+userId)
@@ -42,7 +47,8 @@ export const Profile = () => {
 
                 <div>
                     <UploadForm></UploadForm>
-                    <ImageGrid></ImageGrid>
+                    <ImageGrid setSelectedImg={setSelectedImg} />
+                    {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg}></Modal>}
                 </div>
             </div>
         </section>
