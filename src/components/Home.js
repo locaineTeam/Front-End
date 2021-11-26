@@ -35,10 +35,10 @@ export const Home = () => {
             data.map((info) => {
                 var x = 0;
                 $("#statTable > tbody:last").append($(`<tr><td>  <li className="border rounded p-3 mb-2 li-uni">
-                <div>
+               
                     <h5>${info.name}</h5>                
                     <button className="btn btn-primary" onclick="window.location.href='/university/${info.name}'">Entrar</button>
-                </div>
+                
             </li>
                     </td></tr>`))
                 })
@@ -53,8 +53,6 @@ export const Home = () => {
 
 
     const history = useHistory();
-
-    
 
 
     useEffect(()=>{
@@ -75,9 +73,10 @@ export const Home = () => {
                 <ul className="p-0">
                 <table class="table table-hover table-borderless table-striped" id="statTable">
                     <tbody>
-                                                                
+
                     </tbody>
-                    </table>
+                </table>
+                
                 </ul>
 
             </div>
