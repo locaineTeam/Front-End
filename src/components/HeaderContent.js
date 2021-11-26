@@ -32,7 +32,7 @@ export const HeaderContent = () => {
     return (
         
         <header className="headerContainer">
-            <h1 className="headertitle m-0">Nombre</h1>
+            <h1 className="headertitle m-0">FireBox</h1>
             <ul className="nav">
                 <li>
                     <button type="button" className="btn shadow-none mr-2" onClick={handleHouse}>
