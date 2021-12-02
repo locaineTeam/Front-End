@@ -144,6 +144,10 @@ li.li-uni:hover {
     background-color: #ffffff;
 }
 
+.chat-username:hover {
+    cursor: pointer;
+}
+
 .chat-footer{
     background-color: #c29df1;
     border-bottom-left-radius: 0.5rem;
