@@ -154,6 +154,24 @@ li.li-uni:hover {
     border-bottom-right-radius: 0.5rem;
     border: solid 2px #1c0836;
 }
+
+.request-container{
+    background-color: #611db9;
+    min-height: 100vh;
+}
+
+.request-subcontainer{
+    background-color: #ffffff;
+    width: 80%;
+    margin-top: 60px;
+}
+
+.user-request{
+    display: flex;
+    justify-content: space-between;
+    background-color: #dcd3e6;
+}
+
 .progress-bar{
     height: 5px;
     background: var(--primary);
