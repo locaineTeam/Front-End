@@ -172,6 +172,14 @@ li.li-uni:hover {
     background-color: #dcd3e6;
 }
 
+.span-badge{
+    padding-left: 0.3em;
+    padding-right: 0.3em;
+    font-size: 0.8em;
+    top: 10%;
+    color: #ffffff;
+}
+
 .progress-bar{
     height: 5px;
     background: var(--primary);

@@ -1,12 +1,21 @@
 import downloade from '../Assets/img/Nicolle Figueroa.jpg';
 import { useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
+import { Toast, ToastContainer } from 'react-bootstrap';
+import { useState, useEffect } from 'react';
+import SockJsClient from 'react-stomp';
+import { variables } from '../providers/Variables';
 
 export const HeaderContent = () => {
 
     const history = useHistory();
     const { data, setData } = useData();
     const user = data.user;
+    const token = data.token;
+    const [show, setShow] = useState(false);
+    const [clientRef, setClienteRef] = useState();
+    const [dataToast, setDataToast] = useState({});
+    const [totalRequest, setTotalRequest] = useState(0);
 
     const handleHouse = () => {
         history.push("/home");
@@ -29,24 +38,77 @@ export const HeaderContent = () => {
         setData((prev) => ({ ...prev, token: ""}));
     }
 
+    const onMessageReceive = (msg , topic) => {
+        if(topic === "/topic/notification/"+user.id){
+            setNotification(msg);
+        } else {
+            console.log(msg);
+        }
+    }
+
+    const setNotification = (userId) => {
+        fetch(variables.API_URL+'v1/user/'+userId)
+        .then(response=>response.json())
+        .then(data=>{
+            setShow(false);
+            setDataToast(data);
+            setShow(true);
+            getRequests();
+        });
+    }
+
+    const getRequests = () => {
+        fetch(variables.API_URL+"v1/user/"+user.id+"/request", {
+            method: "GET",
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+            }
+        })
+            .then(response => response.json())
+            .then(json => {
+                setTotalRequest(json.length);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    useEffect(()=>{
+        getRequests();  
+    }, []);
+
     return (
-        
+        <>
+            <SockJsClient url={variables.API_URL + "stompendpoint"}
+                topics={["/topic/notification/"+user.id]}
+                onMessage={onMessageReceive} ref={(client) => { setClienteRef(client) }} />
+
         <header className="headerContainer">
             <h1 className="headertitle m-0">FireBox</h1>
-            <ul className="nav">
-                <li>
-                    <button type="button" className="btn shadow-none mr-2" onClick={handleHouse}>
+            <ul className="d-flex p-0 m-0">
+                <li className="mx-2 d-flex align-items-center">
+                    <button type="button" className="btn p-0 shadow-none" onClick={handleHouse}>
                         <i className="bi-house-door-fill inav"></i>
                     </button>
                 </li>
-                <li>
-                    <button type="button" className="btn shadow-none" onClick={handleMessage}>
+                <li className="mx-2 d-flex align-items-center">
+                    <button type="button" className="btn p-0 shadow-none" onClick={handleMessage}>
                         <i className="bi-chat-dots-fill inav"></i>
                     </button>
                 </li>
-                <li>
-                    <button type="button" className="btn shadow-none" onClick={handleRequest}> 
-                        <i className="bi-person-plus-fill inav"></i>
+                <li className="mx-2 d-flex align-items-center">
+                    <button type="button" className="btn p-0 shadow-none position-relative" onClick={handleRequest}> 
+                        <i className="bi-person-plus-fill inav">
+                        </i>
+                        {(totalRequest > 0) ?
+                            <span className="position-absolute start-100 translate-middle span-badge rounded-pill bg-danger">
+                                {totalRequest}
+                            </span>
+                            :
+                            <span></span>}
+                            
                     </button>
                 </li>
                 <li className="nav-item dropdown">
@@ -69,6 +131,15 @@ export const HeaderContent = () => {
                 </li>
             </ul>
         </header>
-
+            <ToastContainer className="position-fixed bottom-0 end-0 p-3">
+                <Toast onClose={() => setShow(false)} show={show} delay={4000} autohide>
+                    <Toast.Header>
+                        <strong className="me-auto">Notificacion</strong>
+                        <small>Ahora</small>
+                    </Toast.Header>
+                    <Toast.Body>{dataToast.name} {dataToast.lastName} te ha enviado una solicitud</Toast.Body>
+                </Toast>
+            </ToastContainer>
+        </>
     );
 }

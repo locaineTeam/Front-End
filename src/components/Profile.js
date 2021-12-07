@@ -7,6 +7,7 @@ import UploadForm from './UploadForm';
 import ImageGrid from './ImageGrid';
 import  Modal  from './Modal';
 import { useData } from "../providers/DataProvider";
+import SockJsClient from 'react-stomp';
 
 export const Profile = () => {
     
@@ -16,7 +17,8 @@ export const Profile = () => {
     const { data, setData } = useData();
     const token = data.token;
     const user = data.user;
-    const friends = user.userFriends;
+    const [clientRef, setClienteRef] = useState();
+    const [friends, setFriends] = useState([]);
 
     const iam = userId === user.id;
 
@@ -44,24 +46,42 @@ export const Profile = () => {
             body: user.id
         })
             .then(response => response.text())
-            .then(text => console.log(text))
+            .then(text => {
+                console.log(text)
+                clientRef.sendMessage("/app/notification/"+userId, user.id);
+            })
             .catch(err => {
                 console.log(err);
             });
     }
 
-    const isFriend = () => {
-        if(!iam){
-            friends.forEach(element => {
-                if (element === userId) return <button className="btn btn-primary" disabled>Amigos</button>;
-            });
-            return <button className="btn btn-primary" onClick={handleMatch}>Match</button>;
-        }
+    const getFriends = () => {
+        fetch(variables.API_URL+"v1/user/"+user.id+"/friends", {
+            method: "GET",
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+            }
+        })
+            .then(response=>response.json())
+            .then(data => setFriends(data));
     }
+
+    const isFriend = friends.includes(userId);
+
+    useEffect(()=>{
+        getUser();
+        getFriends();
+    }, []);
+
+    const onMessageReceive = () => {}
 
     return (
         <>
-        {getUser()}
+        <SockJsClient url={variables.API_URL + "stompendpoint"}
+                topics={[]} onMessage={onMessageReceive}
+                ref={(client) => { setClienteRef(client) }} />
         <HeaderContent/>
         <section className="profile-container py-3">
             <div className="profile-subcontainer mx-auto p-2 rounded">
@@ -70,7 +90,14 @@ export const Profile = () => {
                 </div>
                 <div className="d-flex justify-content-center mx-auto">
                     <h3>{name} {lastName} </h3>
-                    {isFriend()}
+                    { iam ?
+                        <div></div>
+                        :
+                        isFriend ?
+                            <button className="btn btn-primary" disabled>Amigos</button>
+                            :
+                            <button className="btn btn-primary" onClick={handleMatch}>Match</button>
+                    }
                 </div>
 
                 <div>

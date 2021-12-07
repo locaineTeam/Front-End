@@ -20,22 +20,70 @@ export const Request = () => {
             }
         })
             .then(response => response.json())
-            .then(json => getUsers(json))
+            .then(json => {
+                getUsers(json);
+            })
             .catch(err => {
                 console.log(err);
             });
     }
 
-    const getUsers = (idUsers) => {
-        idUsers.forEach(element => {
-            fetch(variables.API_URL+'v1/user/'+element)
-                .then(response=>response.json())
-                .then(data=>{
-                    const arr = [...requests];
-                    arr.push(data);
-                    setRequests(arr);
-                });
-        });
+    const getUsers = (usersId) => {
+        fetch(variables.API_URL+"v1/user/some", {
+            method: "POST",
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+            },
+            body: JSON.stringify(usersId)
+        })
+            .then(response => response.json())
+            .then(json => {
+                setRequests(json);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    const handleAccept = (userIdToAdd) => {
+        fetch(variables.API_URL+"v1/user/"+user.id+"/friends", {
+            method: "POST",
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+            },
+            body: userIdToAdd
+        })
+            .then(response => response.text())
+            .then(text => {
+                console.log(text);
+                handleCancel(userIdToAdd);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    const handleCancel = (userIdToDelete) => {
+        fetch(variables.API_URL+"v1/user/"+user.id+"/request/"+userIdToDelete, {
+            method: "DELETE",
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+            }
+        })
+            .then(response => response.text())
+            .then(text => {
+                console.log(text);
+                getRequests();
+            })
+            .catch(err => {
+                console.log(err);
+            });
     }
 
     useEffect(()=>{
@@ -48,13 +96,13 @@ export const Request = () => {
             <section className="request-container py-3">
                 <div className="request-subcontainer mx-auto p-2 rounded">
                     <h2>Solicitudes</h2>
-                    {requests.map((userRequest) => {
+                    {requests.map((data) => {
                         return (
                             <div className="user-request mb-1 p-1">
-                                <h6>{userRequest.name} {userRequest.lastName}</h6>
+                                <h6>{data.name} {data.lastName}</h6>
                                 <div>
-                                    <button className="btn btn-success">Aceptar</button>
-                                    <button className="btn btn-danger">Rechazar</button>
+                                    <button className="btn btn-success" onClick={() => handleAccept(data.id)}>Aceptar</button>
+                                    <button className="btn btn-danger" onClick={() => handleCancel(data.id)}>Rechazar</button>
                                 </div>
                             </div>
                         );
