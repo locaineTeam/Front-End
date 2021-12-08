@@ -1,11 +1,13 @@
 import { HeaderContent } from "./HeaderContent";
 import { useState } from 'react';
+import React from 'react';
 import { useParams, useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
 import SockJsClient from 'react-stomp';
 import { variables } from '../providers/Variables';
 import { useRef } from "react";
 import InputEmoji from "react-input-emoji";
+import { Facade } from "./Facade";
 
 export const University = () => {
 
@@ -17,6 +19,7 @@ export const University = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const messagesEnd = useRef(null);
+    
 
     const userDataDto = {
         id: user.id,
@@ -47,7 +50,9 @@ export const University = () => {
     }
 
     const handleClickName = (userId) => {
-        history.push("/profile/"+userId);
+        
+        
+        history.push("/Facade/"+userId);
     }
 
     const scrollToBottom = () => {
@@ -70,9 +75,10 @@ export const University = () => {
                         </div>
                         <div className="chat-body p-1 overflow-auto">
                             
-                            {messages.map((msg) => {
+                            {messages.map((msg) => { 
                                 return(
                                     <div className="chat-text border rounded p-1 mb-1">
+                                        
                                         <h6 className="chat-username" onClick={() => handleClickName(msg.id)}>{msg.name} {msg.lastName}</h6>
                                         <p className="m-0">{msg.message}</p>
                                     </div>
