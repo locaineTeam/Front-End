@@ -4,6 +4,8 @@ import { useParams, useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
 import SockJsClient from 'react-stomp';
 import { variables } from '../providers/Variables';
+import { useRef } from "react";
+import InputEmoji from "react-input-emoji";
 
 export const University = () => {
 
@@ -14,6 +16,7 @@ export const University = () => {
     const { universityId } = useParams();
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
+    const messagesEnd = useRef(null);
 
     const userDataDto = {
         id: user.id,
@@ -27,6 +30,7 @@ export const University = () => {
             const arr = [...messages];
             arr.push(msg);
             setMessages(arr);
+            scrollToBottom();
         } else {
             console.log(msg);
         }
@@ -44,6 +48,10 @@ export const University = () => {
 
     const handleClickName = (userId) => {
         history.push("/profile/"+userId);
+    }
+
+    const scrollToBottom = () => {
+        messagesEnd.current?.scrollIntoView({behavior: 'smooth'});
     }
 
     return (
@@ -70,9 +78,16 @@ export const University = () => {
                                     </div>
                                 );
                             })}
+                            <div ref={messagesEnd}/>
                         </div>
                         <div className="chat-footer p-2 d-flex">
-                            <input type="text" className="form-control" placeholder="mensaje" value={message} onChange={handleChangeMsg}/>
+                            <InputEmoji
+                                value={message}
+                                onChange={setMessage}
+                                cleanOnEnter
+                                onEnter={handleSendMsg}
+                                placeholder="mensaje"
+                            />
                             <button onClick={handleSendMsg} className="btn btn-primary">Enviar</button>
                         </div>
                     </div>
