@@ -25,7 +25,7 @@ function App() {
         <PrivateRoute component={EditFacade} path="/editFacade" />
         <PrivateRoute component={Messages} path="/messages" />
         <PrivateRoute component={Request} path="/request" />
-        <PrivateRoute component={Facade} path="/facade" />
+        <PrivateRoute component={Facade} path="/facade/:userId" />
         <PrivateRoute component={Match} path="/match" />
         <PublicRoute restricted={true} component={Login} path="/" exact />
         <Route>
