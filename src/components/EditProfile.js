@@ -25,12 +25,16 @@ export const EditProfile = () => {
             console.log(data.descripcion);
             
         });
-
+        
     };
+    
+    
+    
     const editPreferences = () => {
         setModalTitle("Edit Preferences");
         setPreferences("");
         refreshList();
+        
     };
     const otherClick = () =>{
         alert("HOLO");
