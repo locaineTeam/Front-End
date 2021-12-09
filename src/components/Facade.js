@@ -1,52 +1,120 @@
+import downloade from '../Assets/img/Nicolle Figueroa.jpg';
+import { HeaderContent } from "./HeaderContent";
+import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
-import React, { useEffect } from 'react';
 import { variables } from '../providers/Variables';
+import UploadForm from './UploadForm';
+import ImageGrid from './ImageGrid';
+import  Modal  from './Modal';
+import { useData } from "../providers/DataProvider";
+import SockJsClient from 'react-stomp';
 
 export const Facade = () => {
-    const [Id, setId] = React.useState("");
-    const [FakeName, setName] = React.useState("");
-    const [Photo,setPhoto]=React.useState("");
-    const [Hash,setHash]=React.useState("");
-    
     const { userId } = useParams();
-    
+    const { data, setData } = useData();
+    const token = data.token;
+    const user = data.user;
+    const [clientRef, setClienteRef] = useState();
+    const [friends, setFriends] = useState([]);
+    const [fakeName, setFakeName] = useState();
+    const [genero,setGenero] = useState();
 
-    const getLocalUser = () =>{
-       
-        fetch(variables.API_URL+'v1/userFacade/'+userId)
+
+    const iam = userId === user.id;
+
+    //Modal picture enlarged variable
+    const [selectedImg, setSelectedImg] = useState(null);
+
+    const getUser = () => {
+        fetch(variables.API_URL+'v1/user/'+userId)
         .then(response=>response.json())
         .then(data=>{
-        
-            setId(data.realUserId);
-            setName(data.fakeName);
-            setPhoto(data.photo);
-            setHash(data.hashTags)
-            
+            setGenero(data.genero);
         });
-    };
+    }
 
-    useEffect(()=>{
+    const getFacade = () => {
+        fetch(variables.API_URL+'v1/userFacade/'+userId,{
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+token
+        }})
+        .then(response=>response.json())
+        .then(data=>{
 
-        getLocalUser();  
-        
-        
-    }, []);
+            setFakeName(data.fakeName);
+        });
+    }
+
     
 
+    const handleMatch = () => {
+        fetch(variables.API_URL+"v1/user/"+userId+"/request", {
+            method: "POST",
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+            },
+            body: user.id
+        })
+            .then(response => response.text())
+            .then(text => {
+                console.log(text)
+                clientRef.sendMessage("/app/notification/"+userId, user.id);
+            })
+            .catch(err => {
+                console.log(err);
+            });
+    }
+
+    const getFriends = () => {
+        fetch(variables.API_URL+"v1/user/"+user.id+"/friends", {
+            method: "GET",
+            headers: {
+                'Accept':'application/json',
+                'Content-Type':'application/json',
+                'Authorization':'Bearer '+token
+            }
+        })
+            .then(response=>response.json())
+            .then(data => setFriends(data));
+    }
+
+    const isFriend = friends.includes(userId);
+
+    useEffect(()=>{
+        getUser();
+        getFacade();
+        
+    }, []);
+
+    const onMessageReceive = () => {}
 
     return (
+        <>
         
-        <><h1>{FakeName}</h1>
-            
-            
-            
-        <h2>{Photo}</h2>
-        <h2>{Hash}</h2>
+        <HeaderContent/>
+        <section className="profile-container py-3">
+            <div className="profile-subcontainer mx-auto p-2 rounded">
+
+                <div className="d-flex justify-content-center mx-auto">
+                    <h3>{fakeName}  </h3>
+
+                    
+                    
+                </div>
+                <div className="d-flex justify-content-center mx-auto">
+                
+                    
+                    <h3>Genero: {genero}  </h3>
+                    
+                </div>
+
+                
+            </div>
+        </section>
         </>
-      
-        
-
-        
-
     );
 }
