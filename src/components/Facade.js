@@ -115,7 +115,9 @@ export const Facade = () => {
 
     return (
         <>
-        
+        <SockJsClient url={variables.API_URL + "stompendpoint"}
+                topics={[]} onMessage={onMessageReceive}
+                ref={(client) => { setClienteRef(client) }} />
         <HeaderContent/>
         <section className="profile-container py-3">
             <div className="profile-subcontainer mx-auto p-2 rounded">
