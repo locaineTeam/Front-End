@@ -9,9 +9,11 @@ import  Modal  from './Modal';
 import { useData } from "../providers/DataProvider";
 import SockJsClient from 'react-stomp';
 
+var profilePicture="";
 export const Profile = () => {
     
-    const { userId } = useParams();
+    
+    const { userId } = useParams();    
     const [name, setName] = useState("");
     const [lastName, setLastName] = useState("");
     const { data, setData } = useData();
@@ -19,6 +21,7 @@ export const Profile = () => {
     const user = data.user;
     const [clientRef, setClienteRef] = useState();
     const [friends, setFriends] = useState([]);
+
 
     const iam = userId === user.id;
 
@@ -70,12 +73,16 @@ export const Profile = () => {
 
     const isFriend = friends.includes(userId);
 
-    useEffect(()=>{
+    useEffect(()=>{        
         getUser();
         getFriends();
     }, []);
 
-    const onMessageReceive = () => {}
+
+
+    const onMessageReceive = () => {
+
+    }
 
     return (
         <>
@@ -86,7 +93,7 @@ export const Profile = () => {
         <section className="profile-container py-3">
             <div className="profile-subcontainer mx-auto p-2 rounded">
                 <div className="img-border p-1 mx-auto">
-                    <img className="img-fluid rounded-circle" src={downloade}/>
+                    <img className="img-fluid rounded-circle" src={profilePicture}/>
                 </div>
                 <div className="d-flex justify-content-center mx-auto">
                     <h3>{name} {lastName} </h3>
@@ -100,7 +107,7 @@ export const Profile = () => {
                     }
                 </div>
 
-                <div>
+                <div>                    
                     <UploadForm></UploadForm>
                     <ImageGrid setSelectedImg={setSelectedImg} />
                     {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg}></Modal>}
@@ -109,4 +116,11 @@ export const Profile = () => {
         </section>
         </>
     );
+    
 }
+
+export const changeProfilePicture = (newProfilePicture)=>{
+    
+    profilePicture=newProfilePicture;
+}
+

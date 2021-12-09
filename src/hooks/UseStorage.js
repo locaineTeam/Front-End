@@ -8,15 +8,12 @@ const useStorage = (file) =>{
     const [error, setError] = useState(null);
     const [url, setUrl] = useState(null);
     const [currentUserId, setCurrentUserId] = useState("");
-    
+    //Variables storing the curret user
     const { data, setData } = useData();
-    const user = data.user;
-    console.log("RE HIJUEPUTA")
-    console.log(user)
+    const user = data.user;  
 
     useEffect (()=>{    
-        console.log("hijueputa")             
-        console.log(user)
+        
         const storageRef = projectStorage.ref(user.id+"/"+file.name);
         const collectionRef=projectFirestore.collection(user.id);        
         storageRef.put(file).on('state_changed', (snap) => {
