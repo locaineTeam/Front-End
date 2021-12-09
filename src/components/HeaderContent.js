@@ -24,6 +24,7 @@ export const HeaderContent = () => {
     const handleMessage = () => {
         history.push("/messages");
     }
+    
 
     const handleRequest = () => {
         history.push("/request");
@@ -31,6 +32,9 @@ export const HeaderContent = () => {
 
     const handleProfile = () => {
         history.push("/profile/"+user.id);
+    }
+    const handleFacade = () => {
+        history.push("/facade/"+user.id);
     }
 
     const handleSignOut = () => {
@@ -119,6 +123,11 @@ export const HeaderContent = () => {
                         <li>
                             <button type="button" className="btn shadow-none" onClick={handleProfile}> 
                                 Perfil
+                            </button>
+                        </li>
+                        <li>
+                            <button type="button" className="btn shadow-none" onClick={ handleFacade}> 
+                                Fachada
                             </button>
                         </li>
                         <li><hr className="dropdown-divider m-0"/></li>
