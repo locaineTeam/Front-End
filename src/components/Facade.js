@@ -1,7 +1,7 @@
 import downloade from '../Assets/img/Nicolle Figueroa.jpg';
 import { HeaderContent } from "./HeaderContent";
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams,useHistory } from 'react-router';
 import { variables } from '../providers/Variables';
 import UploadForm from './UploadForm';
 import ImageGrid from './ImageGrid';
@@ -10,6 +10,7 @@ import { useData } from "../providers/DataProvider";
 import SockJsClient from 'react-stomp';
 
 export const Facade = () => {
+    const history = useHistory();
     const { userId } = useParams();
     const { data, setData } = useData();
     const token = data.token;
@@ -49,7 +50,7 @@ export const Facade = () => {
 
     
     const handleProfile = () => {
-        window.history.replace("/profile/"+user.id);
+        history.push("/profile/"+userId);
     }
 
     const handleMatch = () => {
@@ -129,7 +130,8 @@ export const Facade = () => {
                         <div></div>
                         :
                         isFriend ?
-                            <button className="btn btn-primary" disabled>Ver Perfil</button>
+                            <button className="btn btn-primary" onClick={handleProfile}>Ver Perfil</button>
+                            
                             :
                             <button className="btn btn-primary" onClick={handleMatch}>Match</button>
                     }

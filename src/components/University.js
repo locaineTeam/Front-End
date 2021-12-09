@@ -52,7 +52,8 @@ export const University = () => {
     const handleClickName = (userId) => {
         
         
-        history.push("/Facade/"+userId);
+        
+        history.push("/facade/"+userId);
     }
 
     const scrollToBottom = () => {
