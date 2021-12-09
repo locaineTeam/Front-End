@@ -15,6 +15,7 @@ export const Profile = () => {
     
     const { userId } = useParams();    
     const [name, setName] = useState("");
+    const [descripcion, setDescripcion] = useState("")
     const [lastName, setLastName] = useState("");
     const { data, setData } = useData();
     const token = data.token;
@@ -35,6 +36,7 @@ export const Profile = () => {
 
             setName(data.name);
             setLastName(data.lastName);
+            setDescripcion(data.descripcion);
         });
     }
 
@@ -107,11 +109,29 @@ export const Profile = () => {
                     }
                 </div>
 
-                <div>                    
-                    <UploadForm></UploadForm>
-                    <ImageGrid setSelectedImg={setSelectedImg} />
-                    {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg}></Modal>}
+                
+
+                <div className="d-flex justify-content-center mx-auto">
+                    <form >
+                        <label>
+                            <div className="d-flex justify-content-center mx-auto">                                
+                                DESCRIPCION
+                            </div>
+                            <div>                                
+                                <textarea value={descripcion} readonly="readonly" />
+                            </div>
+                        </label>
+                    </form>
                 </div>
+                {
+                    iam?
+                        <div>                    
+                            <UploadForm></UploadForm>
+                            <ImageGrid setSelectedImg={setSelectedImg} />
+                            {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg}></Modal>}
+                        </div>: 
+                <div></div>
+                }
             </div>
         </section>
         </>
