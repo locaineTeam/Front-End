@@ -1,4 +1,3 @@
-import downloade from '../Assets/img/Nicolle Figueroa.jpg';
 import { HeaderContent } from "./HeaderContent";
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
