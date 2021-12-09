@@ -180,6 +180,32 @@ li.li-uni:hover {
     color: #ffffff;
 }
 
+.messages-container{
+    background-color: #611db9;
+    min-height: 100vh;
+}
+
+.messages-subcontainer{
+    background-color: #ffffff;
+    width: 80%;
+    margin-top: 60px;
+}
+
+.friends-list {
+    width: 15rem;
+    height: 25rem;
+    background-color: #f2eff5;
+}
+
+.friend {
+    background-color: #ffffff;
+}
+
+.friend:hover{
+    cursor: pointer;
+    background-color: #d3d2d2;
+}
+
 .progress-bar{
     height: 5px;
     background: var(--primary);
