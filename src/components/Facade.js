@@ -48,6 +48,9 @@ export const Facade = () => {
     }
 
     
+    const handleProfile = () => {
+        window.history.replace("/profile/"+user.id);
+    }
 
     const handleMatch = () => {
         fetch(variables.API_URL+"v1/user/"+userId+"/request", {
@@ -68,6 +71,7 @@ export const Facade = () => {
                 console.log(err);
             });
     }
+    
 
     const getFriends = () => {
         fetch(variables.API_URL+"v1/user/"+user.id+"/friends", {
@@ -81,12 +85,28 @@ export const Facade = () => {
             .then(response=>response.json())
             .then(data => setFriends(data));
     }
+    const isFriendd = friends.includes(userId);
+
+
+    const chatRedirect = () => {
+        //Veo un perfil que no es el mio, además somos amigos
+        if (!iam){
+            if(isFriendd){
+                handleProfile();
+            }
+
+        }
+        
+    }
 
     const isFriend = friends.includes(userId);
 
     useEffect(()=>{
+        
+        getFriends();
         getUser();
         getFacade();
+        chatRedirect();
         
     }, []);
 
@@ -101,16 +121,18 @@ export const Facade = () => {
 
                 <div className="d-flex justify-content-center mx-auto">
                     <h3>{fakeName}  </h3>
-
-                    
-                    
                 </div>
                 <div className="d-flex justify-content-center mx-auto">
-                
-                    
                     <h3>Genero: {genero}  </h3>
-                    
                 </div>
+                { iam ?
+                        <div></div>
+                        :
+                        isFriend ?
+                            <button className="btn btn-primary" disabled>Ver Perfil</button>
+                            :
+                            <button className="btn btn-primary" onClick={handleMatch}>Match</button>
+                    }
 
                 
             </div>
