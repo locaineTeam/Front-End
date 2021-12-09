@@ -1,11 +1,7 @@
-import downloade from '../Assets/img/Nicolle Figueroa.jpg';
 import { HeaderContent } from "./HeaderContent";
 import { useEffect, useState } from 'react';
 import { useParams,useHistory } from 'react-router';
 import { variables } from '../providers/Variables';
-import UploadForm from './UploadForm';
-import ImageGrid from './ImageGrid';
-import  Modal  from './Modal';
 import { useData } from "../providers/DataProvider";
 import SockJsClient from 'react-stomp';
 

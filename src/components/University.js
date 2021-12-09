@@ -7,7 +7,6 @@ import SockJsClient from 'react-stomp';
 import { variables } from '../providers/Variables';
 import { useRef } from "react";
 import InputEmoji from "react-input-emoji";
-import { Facade } from "./Facade";
 
 export const University = () => {
 
