@@ -19,6 +19,7 @@ export const UniDiv = ({ title}) => {
     return (
         <div>
             {aux}
+            
         </div>
         
     );
