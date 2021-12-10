@@ -45,28 +45,26 @@ export const Home = () => {
             <section className="homepage py-3">
                 <div className="subHomepage mx-auto p-2 rounded">
                     <h2>Universidades</h2>
-                    <table className="table table-hover table-borderless table-striped" id="statTable">
-                        <tbody>
-                            {Object.entries(cache).map(module => {                                
-                                const image = module[1].default;
-                                const name = module[0].replace("./","");
-                                const min = 1;
-                                const max = 200;
-                                const hombres = Math.ceil(min + Math.random() * (max - min));
-                                const mujeres = Math.ceil(min + Math.random() * (max - min));
-                                return (
-                                <tr>
-                                    <td>
-                                        <h5>{name.replace('.png','')}</h5>  
-                                        <p>Hombres: {hombres}  Mujeres: {mujeres}</p>
-                                        <img style={{float: 'left',width: 90, height: 70, margin: 'auto', display: 'block'}} src={image} />  
-                                        <button className="btn btn-primary" onClick={() => handleUniversity(name.replace('.png',''))}>Entrar</button>
-                                    </td>
-                                </tr>
-                                )
-                            })}
-                        </tbody>
-                    </table>
+                    <div className="row">
+                        {Object.entries(cache).map(module => {
+                            const image = module[1].default;
+                            const name = module[0].replace("./", "");
+                            const min = 1;
+                            const max = 200;
+                            const hombres = Math.ceil(min + Math.random() * (max - min));
+                            const mujeres = Math.ceil(min + Math.random() * (max - min));
+                            return (
+                                <div className="col-md-4 mb-2">
+                                    <div className="d-flex flex-column justify-content-center">
+                                        <h5 className="m-auto">{name.replace('.png', '')}</h5>
+                                        <p className="m-auto">Hombres: {hombres}  Mujeres: {mujeres}</p>
+                                        <img className="mb-1" style={{ float: 'left', width: 90, height: 70, margin: 'auto', display: 'block' }} src={image} />
+                                        <button className="btn btn-primary" onClick={() => handleUniversity(name.replace('.png', ''))}>Entrar</button>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
                     
                 </div>
             </section>
