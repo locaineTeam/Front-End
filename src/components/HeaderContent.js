@@ -5,6 +5,7 @@ import { Toast, ToastContainer } from 'react-bootstrap';
 import { useState, useEffect } from 'react';
 import SockJsClient from 'react-stomp';
 import { variables } from '../providers/Variables';
+import fireBoxLogo from '../Assets/fire_box_logo.png';
 
 export const HeaderContent = () => {
 
@@ -90,7 +91,11 @@ export const HeaderContent = () => {
                 onMessage={onMessageReceive} ref={(client) => { setClienteRef(client) }} />
 
         <header className="headerContainer">
-            <h1 className="headertitle m-0">FireBox</h1>
+            <div className='d-flex'>
+                <img style={{ float: 'left', width: 50, height: 50, margin: 'auto', display: 'block' }} src={fireBoxLogo} />     
+                <h1 className="headertitle m-0">FireBox</h1>
+            
+            </div>
             <ul className="d-flex p-0 m-0">
                 <li className="mx-2 d-flex align-items-center">
                     <button type="button" className="btn p-0 shadow-none" onClick={handleHouse}>
