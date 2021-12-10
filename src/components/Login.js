@@ -3,6 +3,7 @@ import { Col, FloatingLabel, Form, Button } from "react-bootstrap";
 import { useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
 import {variables} from "../providers/Variables";
+import fireBoxLogo from '../Assets/fire_box_logo.png';
 
 export const Login = () => {
     const { data, setData } = useData();
@@ -93,6 +94,15 @@ export const Login = () => {
             `}
         </style>
         <div className="LoginContainer d-flex align-items-center justify-content-center">
+            
+            
+            
+            <div className="fireBox_Title">
+                <h1 className="fireBoxLoginTitleText">FireBox</h1>
+                <img src={fireBoxLogo} />                
+                
+            </div>
+            <br/>
             <div className="LoginSubContainer rounded">
                 <Col>
                     <Form.Label>{msj}</Form.Label>

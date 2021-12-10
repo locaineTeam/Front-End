@@ -259,6 +259,15 @@ li.li-uni:hover {
     align-items: center;
     justify-content: center;
 }
+.fireBox_Title{
+    position: 'center';
+
+}
+
+.fireBoxLoginTitleText{
+    color:white;
+    font-size: 42px;
+}
 
 @media (min-width: 320px) {
     .LoginSubContainer {
