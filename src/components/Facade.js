@@ -4,6 +4,7 @@ import { useParams,useHistory } from 'react-router';
 import { variables } from '../providers/Variables';
 import { useData } from "../providers/DataProvider";
 import SockJsClient from 'react-stomp';
+import fire_box_log from "../Assets/fire_box_logo.png";
 
 export const Facade = () => {
     const history = useHistory();
@@ -117,7 +118,9 @@ export const Facade = () => {
         <HeaderContent/>
         <section className="profile-container py-3">
             <div className="profile-subcontainer mx-auto p-2 rounded">
-
+                <div className="img-border p-1 mx-auto">
+                    <img className="img-fluid rounded-circle" src={fire_box_log}/>
+                </div>
                 <div className="d-flex justify-content-center mx-auto">
                     <h3>{fakeName}  </h3>
                 </div>

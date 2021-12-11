@@ -133,7 +133,7 @@ export const University = () => {
                     
                     <div className="uni mx-auto p-2 rounded">
                         <h1 style={{ textTransform: 'uppercase'}}>BIENVENIDO AL CHAT DE {universityId}</h1>
-                        HASDASH
+                        No olvides dar click sobre el nombre de quien te llame la atención para conectar!
                     </div>
                 </div>
             </section>

@@ -149,7 +149,7 @@ export const HeaderContent = () => {
                 </li>
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle ddnav" href="#" data-bs-toggle="dropdown">
-                        <img className="img-fluid rounded-circle" width="40" height="40" src={photo}/>
+                        <img className="img-fluid rounded-circle" width="40" height="40" src={photo==null?fireBoxLogo:photo}/>
                     </a>
                     <ul className="dropdown-menu p-0">
                         <li>

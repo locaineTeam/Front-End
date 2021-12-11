@@ -7,6 +7,7 @@ import ImageGrid from './ImageGrid';
 import  Modal  from './Modal';
 import { useData } from "../providers/DataProvider";
 import SockJsClient from 'react-stomp';
+import fire_box_log from "../Assets/fire_box_logo.png";
 
 
 var token = "";
@@ -102,7 +103,7 @@ export const Profile = () => {
         <section className="profile-container py-3">
             <div className="profile-subcontainer mx-auto p-2 rounded">
                 <div className="img-border p-1 mx-auto">
-                    <img className="img-fluid rounded-circle" src={foto}/>
+                    <img className="img-fluid rounded-circle" src={foto==null?fire_box_log:foto}/>
                 </div>
                 <div className="d-flex justify-content-center mx-auto">
                     <h3>{name} {lastName} </h3>
