@@ -1,5 +1,5 @@
 import { HeaderContent } from "./HeaderContent";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import React from 'react';
 import { useParams, useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
@@ -13,17 +13,21 @@ export const University = () => {
     const history = useHistory();
     const { data, setData } = useData();
     const user = data.user;
+    const token = data.token;
     const [clientRef, setClienteRef] = useState();
     const { universityId } = useParams();
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
+    const [fakeName, setFakeName] = useState();
+    const [genero, setGenero] = useState();
+    
     const messagesEnd = useRef(null);
     
 
     const userDataDto = {
         id: user.id,
-        name: user.name,
-        lastName: user.lastName,
+        name: fakeName,
+        lastName: genero,
         message: message
     };
 
@@ -59,6 +63,35 @@ export const University = () => {
         messagesEnd.current?.scrollIntoView({behavior: 'smooth'});
     }
 
+
+    const getFacade = (userId) => {
+        fetch(variables.API_URL+'v1/userFacade/'+userId,{
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+token
+        }})
+        .then(response=>response.json())
+        .then(data=>{
+            setFakeName(data.fakeName);
+        });
+
+        fetch(variables.API_URL+'v1/user/'+userId)
+        .then(response=>response.json())
+        .then(data=>{
+            setGenero(data.genero);
+        });
+    }
+
+    useEffect(()=>{
+        
+        
+
+       getFacade(user.id);
+        
+        
+    }, []);
+
     return (
         <>
             <SockJsClient url={variables.API_URL + "stompendpoint"}
@@ -79,7 +112,7 @@ export const University = () => {
                                 return(
                                     <div className="chat-text border rounded p-1 mb-1">
                                         
-                                        <h6 className="chat-username" onClick={() => handleClickName(msg.id)}>{msg.name} {msg.lastName}</h6>
+                                        <h6 className="chat-username" onClick={() => handleClickName(msg.id)}>{msg.lastName} : {msg.name}</h6>
                                         <p className="m-0">{msg.message}</p>
                                     </div>
                                 );
