@@ -130,10 +130,10 @@ export const Facade = () => {
                 <div className="img-border p-1 mx-auto">
                     <img className="img-fluid rounded-circle" src={fire_box_log}/>
                 </div>
-                <div className="d-flex justify-content-center mx-auto">
+                <div className="d-flex justify-content-center mx-auto mb-2">
                     <h3>{fakeName}  </h3>
                 </div>
-                <div className="d-flex justify-content-center mx-auto">
+                <div className="d-flex justify-content-center mx-auto mb-2">
                     <h3>Genero: 
                         {genero=="Hombre"?
                             <i className="bi bi-gender-male"></i>
@@ -143,7 +143,7 @@ export const Facade = () => {
                     </h3>
                     
                 </div>
-                <div className="d-flex justify-content-center mx-auto">
+                <div className="d-flex justify-content-center mx-auto mb-4">
                     <button type="button" className="btn rounded-pill btn-secondary mr-1"> #ECI</button>
                     <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Comida</button>
                     <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Tecnologia</button>
@@ -152,15 +152,17 @@ export const Facade = () => {
                     <button type="button" className="btn rounded-pill btn-secondary mr-1"> #MonasChinas</button>                    
                     <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Emprendimiento</button>
                 </div>
-                { iam ?
+                <div className="d-flex justify-content-center mx-auto">
+                    { iam ?
                         <div></div>
                         :
                         isFriend ?
-                            <button className="btn btn-primary" onClick={handleProfile}>Ver Perfil</button>
+                            <button className="btn btn-primary mx-auto" onClick={handleProfile}>Ver Perfil</button>
                             
                             :
-                            <button className="btn btn-primary" onClick={handleMatch}>Match</button>
+                            <button className="btn btn-primary mx-auto" onClick={handleMatch}>Match</button>
                     }
+                </div>
 
                 
             </div>

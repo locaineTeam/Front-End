@@ -136,7 +136,7 @@ export const University = () => {
                     </div>
                     
                     <div className="uni mx-auto p-2 rounded">
-                        <h1 style={{ textTransform: 'uppercase'}}>BIENVENIDO AL CHAT DE {universityId}</h1><br/>
+                        <h1 style={{ textTransform: 'uppercase', color:'#1C0836'}} >BIENVENIDO AL CHAT DE {universityId} <i class="bi bi-chat-square"></i></h1><br/>
                         <h2>Tips</h2>
 
                         <h3>1. Todos somos anónimos.<br/></h3>
