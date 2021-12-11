@@ -103,7 +103,7 @@ export const Profile = () => {
         <section className="profile-container py-3">
             <div className="profile-subcontainer mx-auto p-2 rounded">
                 <div className="img-border p-1 mx-auto">
-                    <img className="img-fluid rounded-circle" src={foto==null?fire_box_log:foto}/>
+                    <img className="img-fluid rounded-circle" style={{ width: 180, height: 180, margin: 'auto', display: 'block' }} src={foto==null?fire_box_log:foto}/>
                 </div>
                 <div className="d-flex justify-content-center mx-auto">
                     <h3>{name} {lastName} </h3>
@@ -121,10 +121,25 @@ export const Profile = () => {
                     <form >
                         <label>
                             <div className="d-flex justify-content-center mx-auto">                                
-                                DESCRIPCION
+                                <h7>¡Cuentanos de ti!</h7>
                             </div>
-                            <div>                                
-                                <textarea value={descripcion} readonly="readonly" />
+                            <div className="d-flex justify-content-center mx-auto mb-3">  
+                                <div class="md-form">
+                                    <textarea id="form7"  value={descripcion} class="md-textarea form-control" rows="3"></textarea>
+                                    
+                                </div>
+
+                            </div>
+                            <div className="container">
+                            <div className="d-flex justify-content-center mx-auto mb-3">
+                                <button type="button" className="btn rounded-pill btn-secondary mr-1"> #ECI</button>
+                                <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Comida</button>
+                                <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Tecnologia</button>
+                                <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Administracion</button>
+                                <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Viajes</button>
+                                <button type="button" className="btn rounded-pill btn-secondary mr-1"> #MonasChinas</button>                    
+                                <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Emprendimiento</button>
+                            </div>
                             </div>
                         </label>
                     </form>
