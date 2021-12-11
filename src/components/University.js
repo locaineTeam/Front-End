@@ -112,7 +112,11 @@ export const University = () => {
                                 return(
                                     <div className="chat-text border rounded p-1 mb-1">
                                         
-                                        <h6 className="chat-username" onClick={() => handleClickName(msg.id)}>{msg.lastName} : {msg.name}</h6>
+                                        <h6 className="chat-username" onClick={() => handleClickName(msg.id)}> {msg.name} - {msg.lastName =="Hombre"?
+                                            <i className="bi bi-gender-male"></i>
+                                            :
+                                            <i class="bi bi-gender-female"></i>
+                                        }: </h6>
                                         <p className="m-0">{msg.message}</p>
                                     </div>
                                 );

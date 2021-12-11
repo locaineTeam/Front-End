@@ -125,7 +125,13 @@ export const Facade = () => {
                     <h3>{fakeName}  </h3>
                 </div>
                 <div className="d-flex justify-content-center mx-auto">
-                    <h3>Genero: {genero}  </h3>
+                    <h3>Genero: 
+                        {genero=="Hombre"?
+                            <i className="bi bi-gender-male"></i>
+                            :
+                            <i class="bi bi-gender-female"></i>
+                        }  
+                    </h3>
                 </div>
                 { iam ?
                         <div></div>
