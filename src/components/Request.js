@@ -124,7 +124,7 @@ export const Request = () => {
                             <div className="user-request mb-1 p-1">
                                 <h6>{fakeName} </h6>
                                 <div>
-                                    <button className="btn btn-success" onClick={() => handleAccept(data.id)} ref="www.google.com">Aceptar</button>
+                                    <button className="btn btn-success" onClick={() => handleAccept(data.id)}>Aceptar</button>
                                     <button className="btn btn-danger" onClick={() => handleCancel(data.id)}>Rechazar</button>
                                 </div>
                             </div>
