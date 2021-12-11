@@ -1,6 +1,6 @@
 import { HeaderContent } from "./HeaderContent";
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router';
+import { useParams, useHistory } from 'react-router';
 import { variables } from '../providers/Variables';
 import UploadForm from './UploadForm';
 import ImageGrid from './ImageGrid';
@@ -11,10 +11,12 @@ import SockJsClient from 'react-stomp';
 
 var token = "";
 var user = "";
+var history = null;
 var profilePicture="";
 
 export const Profile = () => {
     
+    history = useHistory();
     
     const { userId } = useParams();    
     const [name, setName] = useState("");
@@ -134,7 +136,9 @@ export const Profile = () => {
                             
                             {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg}></Modal>}
                         </div>: 
-                <div></div>
+                        <div>
+                            <ImageGrid setSelectedImg={setSelectedImg} />
+                        </div>
                 }                
             </div>
         </section>
@@ -158,8 +162,10 @@ export const changeProfilePicture = (newProfilePicture) =>{
         .then(response => response.text)
         .then(text => {
             console.log(text)
+            console.log(user.id)
+            window.location.reload();
         })
-        .catch(err => {
+        .catch(err => {            
             console.log(err);
         });
     
