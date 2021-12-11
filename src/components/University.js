@@ -136,8 +136,13 @@ export const University = () => {
                     </div>
                     
                     <div className="uni mx-auto p-2 rounded">
-                        <h1 style={{ textTransform: 'uppercase'}}>BIENVENIDO AL CHAT DE {universityId}</h1>
-                        No olvides dar click sobre el nombre de quien te llame la atención para conectar!
+                        <h1 style={{ textTransform: 'uppercase'}}>BIENVENIDO AL CHAT DE {universityId}</h1><br/>
+                        <h2>Tips</h2>
+
+                        <h3>1. Todos somos anónimos.<br/></h3>
+                        <h3>2. Tu nombre y perfil real se mostraran una vez aceptes un match.<br/></h3>
+                        <h3>3. Sal allá y haz amigos, el cielo es el límite!</h3>
+                        
                     </div>
                 </div>
             </section>

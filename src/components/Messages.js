@@ -59,7 +59,8 @@ export const Messages = () => {
             <div className="messages-container py-3">
                 <div className="messages-subcontainer mx-auto p-2 rounded">
                     <div className="inbox d-flex justify-content-start">
-                        <div className="friends-list p-1 overflow-auto">
+                        
+                        <div className="friends-list p-1 overflow-auto">                            
                             {friends.map((friend) => {
                                     return(
                                         <div className="friend border rounded p-1 mb-1" onClick={() => setCurrentFriend(friend)}>
@@ -70,7 +71,7 @@ export const Messages = () => {
                         </div>
                         <div className="chat">
                             <div className="chat-header p-2">
-                                {currentFriend.name} {currentFriend.lastName}
+                                {currentFriend.name==null?"Chats Internos":currentFriend.name} {currentFriend.lastName}
                             </div>
                             <div className="chat-body p-1 overflow-auto">
 
