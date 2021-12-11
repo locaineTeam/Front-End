@@ -56,7 +56,7 @@ export const Home = () => {
                             return (
                                 <div className="col-md-4 mb-2">
                                     <div className="d-flex flex-column justify-content-center">
-                                        <h5 className="m-auto">{name.replace('.png', '')}</h5>
+                                        <h5 className="m-auto" style={{ textTransform: 'uppercase'}}>{name.replace('.png', '')}</h5>
                                         <p className="m-auto">Hombres: {hombres}  Mujeres: {mujeres}</p>
                                         <img className="mb-1" style={{ float: 'left', width: 90, height: 70, margin: 'auto', display: 'block' }} src={image} />
                                         <button className="btn btn-primary" onClick={() => handleUniversity(name.replace('.png', ''))}>Entrar</button>
