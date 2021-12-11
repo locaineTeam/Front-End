@@ -5,6 +5,7 @@ import { variables } from '../providers/Variables';
 import { useData } from "../providers/DataProvider";
 import SockJsClient from 'react-stomp';
 import fire_box_log from "../Assets/fire_box_logo.png";
+import { WithContext as ReactTags } from 'react-tag-input';
 
 export const Facade = () => {
     const history = useHistory();
@@ -16,6 +17,14 @@ export const Facade = () => {
     const [friends, setFriends] = useState([]);
     const [fakeName, setFakeName] = useState();
     const [genero,setGenero] = useState();
+
+    const KeyCodes = {
+        comma: 188,
+        enter: [10, 13],
+      };
+      
+      const delimiters = [...KeyCodes.enter, KeyCodes.comma];
+    
 
 
     const iam = userId === user.id;
@@ -132,6 +141,16 @@ export const Facade = () => {
                             <i class="bi bi-gender-female"></i>
                         }  
                     </h3>
+                    
+                </div>
+                <div className="d-flex justify-content-center mx-auto">
+                    <button type="button" className="btn rounded-pill btn-secondary mr-1"> #ECI</button>
+                    <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Comida</button>
+                    <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Tecnologia</button>
+                    <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Administracion</button>
+                    <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Viajes</button>
+                    <button type="button" className="btn rounded-pill btn-secondary mr-1"> #MonasChinas</button>                    
+                    <button type="button" className="btn rounded-pill btn-secondary mr-1"> #Emprendimiento</button>
                 </div>
                 { iam ?
                         <div></div>
