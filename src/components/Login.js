@@ -93,9 +93,10 @@ export const Login = () => {
                 }
             `}
         </style>
+        
         <div className="LoginContainer d-flex align-items-center justify-content-center">
             
-            
+        
             
             <div className="fireBox_Title">
                 <h1 className="fireBoxLoginTitleText">FireBox</h1>
@@ -104,6 +105,12 @@ export const Login = () => {
             </div>
             <br/>
             <div className="LoginSubContainer rounded">
+            <div>
+        <h1 className="text-center" style={{color:'#1C0836'}}>¡EXPANDE LA FLAMA!</h1>
+            Conectemos amigos, parejas y futuros brillantes sin prejuicios.
+
+            ¡Borremos barreras en las conexiones entre universidades, seamos UNO!
+        </div>
                 <Col>
                     <Form.Label>{msj}</Form.Label>
                     <Form onSubmit={handleSubmit}>
@@ -129,7 +136,7 @@ export const Login = () => {
                         </Form.Label>
                     </div>
                 </Col>
-            </div>
+            </div>            
         </div>
         </>
         
