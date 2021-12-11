@@ -1,5 +1,5 @@
 import { HeaderContent } from "./HeaderContent";
-import { useState } from 'react';
+import { useState,useEffect } from 'react';
 import React from 'react';
 import { useParams, useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
@@ -13,10 +13,13 @@ export const University = () => {
     const history = useHistory();
     const { data, setData } = useData();
     const user = data.user;
+    const token = data.token;
     const [clientRef, setClienteRef] = useState();
     const { universityId } = useParams();
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
+    const [fakeName, setFakeName] = useState();
+    
     const messagesEnd = useRef(null);
     
 
@@ -59,6 +62,31 @@ export const University = () => {
         messagesEnd.current?.scrollIntoView({behavior: 'smooth'});
     }
 
+
+    const getFacade = (userID) => {
+        fetch(variables.API_URL+'v1/userFacade/'+userID,{
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+token
+        }})
+        .then(response=>response.json())
+        .then(data=>{
+
+            setFakeName(data.fakeName);
+            
+        });
+    }
+
+    useEffect(()=>{
+        
+        
+
+       getFacade(user.id);
+        
+        
+    }, []);
+
     return (
         <>
             <SockJsClient url={variables.API_URL + "stompendpoint"}
@@ -76,10 +104,11 @@ export const University = () => {
                         <div className="chat-body p-1 overflow-auto">
                             
                             {messages.map((msg) => { 
+                                //getFacade(msg.id);
                                 return(
                                     <div className="chat-text border rounded p-1 mb-1">
                                         
-                                        <h6 className="chat-username" onClick={() => handleClickName(msg.id)}>{msg.name} {msg.lastName}</h6>
+                                        <h6 className="chat-username" onClick={() => handleClickName(msg.id)}>{fakeName}</h6>
                                         <p className="m-0">{msg.message}</p>
                                     </div>
                                 );

@@ -17,6 +17,7 @@ export const HeaderContent = () => {
     const [clientRef, setClienteRef] = useState();
     const [dataToast, setDataToast] = useState({});
     const [totalRequest, setTotalRequest] = useState(0);
+    const [fakeName, setFakeName] = useState();
 
     const handleHouse = () => {
         history.push("/home");
@@ -50,6 +51,19 @@ export const HeaderContent = () => {
             console.log(msg);
         }
     }
+    const getFacade = (userId) => {
+        fetch(variables.API_URL+'v1/userFacade/'+userId,{
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+token
+        }})
+        .then(response=>response.json())
+        .then(data=>{
+
+            setFakeName(data.fakeName);
+        });
+    }
 
     const setNotification = (userId) => {
         fetch(variables.API_URL+'v1/user/'+userId)
@@ -57,6 +71,7 @@ export const HeaderContent = () => {
         .then(data=>{
             setShow(false);
             setDataToast(data);
+            getFacade(user.id);
             setShow(true);
             getRequests();
         });
@@ -151,7 +166,7 @@ export const HeaderContent = () => {
                         <strong className="me-auto">Notificacion</strong>
                         <small>Ahora</small>
                     </Toast.Header>
-                    <Toast.Body>{dataToast.name} {dataToast.lastName} te ha enviado una solicitud</Toast.Body>
+                    <Toast.Body>{fakeName} te ha enviado una solicitud</Toast.Body>
                 </Toast>
             </ToastContainer>
         </>

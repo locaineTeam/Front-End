@@ -9,6 +9,8 @@ export const Request = () => {
     const token = data.token;
     const user = data.user;
     const [requests, setRequests] = useState([]);
+    const [fakeName, setFakeName] = useState();
+
 
     const getRequests = () => {
         fetch(variables.API_URL+"v1/user/"+user.id+"/request", {
@@ -27,6 +29,25 @@ export const Request = () => {
                 console.log(err);
             });
     }
+
+
+
+    const getFacade = (userID) => {
+        fetch(variables.API_URL+'v1/userFacade/'+userID,{
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+token
+        }})
+        .then(response=>response.json())
+        .then(data=>{
+
+            setFakeName(data.fakeName);
+            
+        });
+    }
+
+    
 
     const getUsers = (usersId) => {
         fetch(variables.API_URL+"v1/user/some", {
@@ -87,7 +108,8 @@ export const Request = () => {
     }
 
     useEffect(()=>{
-        getRequests();  
+        getRequests(); 
+        
     }, []);
 
     return (
@@ -97,9 +119,10 @@ export const Request = () => {
                 <div className="request-subcontainer mx-auto p-2 rounded">
                     <h2>Solicitudes</h2>
                     {requests.map((data) => {
+                        getFacade(data.id); 
                         return (
                             <div className="user-request mb-1 p-1">
-                                <h6>{data.name} {data.lastName}</h6>
+                                <h6>{fakeName} </h6>
                                 <div>
                                     <button className="btn btn-success" onClick={() => handleAccept(data.id)}>Aceptar</button>
                                     <button className="btn btn-danger" onClick={() => handleCancel(data.id)}>Rechazar</button>
