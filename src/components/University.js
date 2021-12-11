@@ -70,8 +70,8 @@ export const University = () => {
                 <div className="uni-subcontainer mx-auto p-2 rounded">
 
                     <div className="chat">
-                        <div className="chat-header p-2">
-                            Chat
+                        <div className="chat-header p-2" style={{ textTransform: 'uppercase'}}>
+                            {universityId}
                         </div>
                         <div className="chat-body p-1 overflow-auto">
                             
@@ -96,6 +96,11 @@ export const University = () => {
                             />
                             <button onClick={handleSendMsg} className="btn btn-primary">Enviar</button>
                         </div>
+                    </div>
+                    
+                    <div className="uni mx-auto p-2 rounded">
+                        <h1 style={{ textTransform: 'uppercase'}}>BIENVENIDO AL CHAT DE {universityId}</h1>
+                        HASDASH
                     </div>
                 </div>
             </section>
