@@ -19,14 +19,15 @@ export const University = () => {
     const [messages, setMessages] = useState([]);
     const [message, setMessage] = useState("");
     const [fakeName, setFakeName] = useState();
+    const [genero, setGenero] = useState();
     
     const messagesEnd = useRef(null);
     
 
     const userDataDto = {
         id: user.id,
-        name: user.name,
-        lastName: user.lastName,
+        name: fakeName,
+        lastName: genero,
         message: message
     };
 
@@ -63,8 +64,8 @@ export const University = () => {
     }
 
 
-    const getFacade = (userID) => {
-        fetch(variables.API_URL+'v1/userFacade/'+userID,{
+    const getFacade = (userId) => {
+        fetch(variables.API_URL+'v1/userFacade/'+userId,{
         headers: {
             'Accept':'application/json',
             'Content-Type':'application/json',
@@ -72,9 +73,13 @@ export const University = () => {
         }})
         .then(response=>response.json())
         .then(data=>{
-
             setFakeName(data.fakeName);
-            
+        });
+
+        fetch(variables.API_URL+'v1/user/'+userId)
+        .then(response=>response.json())
+        .then(data=>{
+            setGenero(data.genero);
         });
     }
 
@@ -104,11 +109,10 @@ export const University = () => {
                         <div className="chat-body p-1 overflow-auto">
                             
                             {messages.map((msg) => { 
-                                //getFacade(msg.id);
                                 return(
                                     <div className="chat-text border rounded p-1 mb-1">
                                         
-                                        <h6 className="chat-username" onClick={() => handleClickName(msg.id)}>{fakeName}</h6>
+                                        <h6 className="chat-username" onClick={() => handleClickName(msg.id)}>{msg.lastName} : {msg.name}</h6>
                                         <p className="m-0">{msg.message}</p>
                                     </div>
                                 );
