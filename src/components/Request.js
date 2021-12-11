@@ -27,13 +27,13 @@ export const Request = () => {
             })
             .catch(err => {
                 console.log(err);
-            });
+        });
     }
 
 
 
-    const getFacade = (userID) => {
-        fetch(variables.API_URL+'v1/userFacade/'+userID,{
+    const getFacade = (userId) => {
+        fetch(variables.API_URL+'v1/userFacade/'+userId,{
         headers: {
             'Accept':'application/json',
             'Content-Type':'application/json',
@@ -50,7 +50,7 @@ export const Request = () => {
     
 
     const getUsers = (usersId) => {
-        fetch(variables.API_URL+"v1/user/some", {
+        fetch(variables.API_URL+"v1/userFacade/some", {
             method: "POST",
             headers: {
                 'Accept':'application/json',
@@ -119,13 +119,14 @@ export const Request = () => {
                 <div className="request-subcontainer mx-auto p-2 rounded">
                     <h2>Solicitudes</h2>
                     {requests.map((data) => {
-                        getFacade(data.id); 
+                        console.log(data)
+                        //getFacade(data.id); 
                         return (
                             <div className="user-request mb-1 p-1">
-                                <h6>{fakeName} </h6>
+                                <h6>{data.fakeName}</h6>
                                 <div>
-                                    <button className="btn btn-success" onClick={() => handleAccept(data.id)}>Aceptar</button>
-                                    <button className="btn btn-danger" onClick={() => handleCancel(data.id)}>Rechazar</button>
+                                    <button className="btn btn-success" onClick={() => handleAccept(data.realUserId)}>Aceptar</button>
+                                    <button className="btn btn-danger" onClick={() => handleCancel(data.realUserId)}>Rechazar</button>
                                 </div>
                             </div>
                         );
