@@ -20,7 +20,11 @@ const UploadForm = () =>{
 
     return(
         <form>
-            <input type="file" onChange={changeHandler}/>
+            <div className="container">
+                <div  className="d-flex justify-content-center mx-auto mb-3">
+                    <input type="file" className="form-control" id="customFile" onChange={changeHandler} />
+                </div>
+            </div>  
             <div className="output">
                 { error && <div className="error">{error}</div>}
                 {file && <div>{file.name}

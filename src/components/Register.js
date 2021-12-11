@@ -32,6 +32,7 @@ export const Register = () => {
             lastName: lastName,
             genero: gender,
             email: email,
+            descripcion:"I Love Firebox! <3",
             password: password
         };
 
