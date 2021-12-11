@@ -82,7 +82,7 @@ export const Profile = () => {
 
     const isFriend = friends.includes(userId);
 
-    useEffect(()=>{        
+    useEffect(()=>{              
         getUser();
         getFriends();
     }, []);
@@ -115,7 +115,7 @@ export const Profile = () => {
                             <button className="btn btn-primary" onClick={handleMatch}>Match</button>
                     }
                 </div>               
-
+                
                 <div className="d-flex justify-content-center mx-auto">
                     <form >
                         <label>
@@ -132,12 +132,12 @@ export const Profile = () => {
                     iam?
                         <div>                    
                             <UploadForm></UploadForm>
-                            <ImageGrid setSelectedImg={setSelectedImg} />
+                            <ImageGrid setSelectedImg={setSelectedImg} userId={userId} />
                             
                             {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg}></Modal>}
                         </div>: 
                         <div>
-                            <ImageGrid setSelectedImg={setSelectedImg} />
+                            <ImageGrid setSelectedImg={setSelectedImg} userId={userId} />
                         </div>
                 }                
             </div>

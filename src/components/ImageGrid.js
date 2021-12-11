@@ -2,12 +2,11 @@ import React from 'react';
 import useFirestore from '../hooks/useFirestore';
 import { useData } from "../providers/DataProvider";
 
-const ImageGrid = ({setSelectedImg}) => {
+const ImageGrid = ({setSelectedImg, userId}) => {
     //Variables storing current user
     const { data, setData } = useData();
     const user = data.user;
-
-    const { docs } = useFirestore(user.id);
+    const { docs } = useFirestore(userId);
     
     return (
         <div className="img-grid">

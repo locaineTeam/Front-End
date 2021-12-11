@@ -1,4 +1,3 @@
-import downloade from '../Assets/img/Nicolle Figueroa.jpg';
 import { useHistory } from "react-router";
 import { useData } from "../providers/DataProvider";
 import { Toast, ToastContainer } from 'react-bootstrap';
@@ -11,6 +10,7 @@ export const HeaderContent = () => {
 
     const history = useHistory();
     const { data, setData } = useData();
+    const [photo, setPhoto] = useState("");
     const user = data.user;
     const token = data.token;
     const [show, setShow] = useState(false);
@@ -55,7 +55,7 @@ export const HeaderContent = () => {
         fetch(variables.API_URL+'v1/user/'+userId)
         .then(response=>response.json())
         .then(data=>{
-            setShow(false);
+            setShow(false);     
             setDataToast(data);
             setShow(true);
             getRequests();
@@ -80,8 +80,20 @@ export const HeaderContent = () => {
             });
     }
 
+    const getPhoto = () => {
+        fetch(variables.API_URL+"v1/user/"+user.id)
+        .then(response => response.json())
+        .then(json => {
+            setPhoto(json.foto);
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    }
+
     useEffect(()=>{
-        getRequests();  
+        getRequests(); 
+        getPhoto(); 
     }, []);
 
     return (
@@ -122,7 +134,7 @@ export const HeaderContent = () => {
                 </li>
                 <li className="nav-item dropdown">
                     <a className="nav-link dropdown-toggle ddnav" href="#" data-bs-toggle="dropdown">
-                        <img className="img-fluid rounded-circle" width="40" height="40" src={downloade}/>
+                        <img className="img-fluid rounded-circle" width="40" height="40" src={photo}/>
                     </a>
                     <ul className="dropdown-menu p-0">
                         <li>
