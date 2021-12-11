@@ -21,11 +21,12 @@ const Modal = ({setSelectedImg, selectedImg}) => {
 
     return (
         <div className="backdrop" onClick={handleClick}>
-            <img src={selectedImg} alt="enlarged pic"/>
-            
             <div className="modal-container">                
                 <button className="btn btn-primary" onClick={setAsProfilePicture}>Imagen de perfil</button>
             </div>
+            <img src={selectedImg} alt="enlarged pic"/>
+            
+            
         </div>
         
     );

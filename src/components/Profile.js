@@ -8,7 +8,11 @@ import  Modal  from './Modal';
 import { useData } from "../providers/DataProvider";
 import SockJsClient from 'react-stomp';
 
+
+var token = "";
+var user = "";
 var profilePicture="";
+
 export const Profile = () => {
     
     
@@ -16,9 +20,10 @@ export const Profile = () => {
     const [name, setName] = useState("");
     const [descripcion, setDescripcion] = useState("")
     const [lastName, setLastName] = useState("");
+    const [foto, setPhoto] = useState("")
     const { data, setData } = useData();
-    const token = data.token;
-    const user = data.user;
+    token = data.token;
+    user = data.user;
     const [clientRef, setClienteRef] = useState();
     const [friends, setFriends] = useState([]);
 
@@ -36,6 +41,7 @@ export const Profile = () => {
             setName(data.name);
             setLastName(data.lastName);
             setDescripcion(data.descripcion);
+            setPhoto(data.foto);
         });
     }
 
@@ -94,7 +100,7 @@ export const Profile = () => {
         <section className="profile-container py-3">
             <div className="profile-subcontainer mx-auto p-2 rounded">
                 <div className="img-border p-1 mx-auto">
-                    <img className="img-fluid rounded-circle" src={profilePicture}/>
+                    <img className="img-fluid rounded-circle" src={foto}/>
                 </div>
                 <div className="d-flex justify-content-center mx-auto">
                     <h3>{name} {lastName} </h3>
@@ -106,9 +112,7 @@ export const Profile = () => {
                             :
                             <button className="btn btn-primary" onClick={handleMatch}>Match</button>
                     }
-                </div>
-
-                
+                </div>               
 
                 <div className="d-flex justify-content-center mx-auto">
                     <form >
@@ -127,10 +131,11 @@ export const Profile = () => {
                         <div>                    
                             <UploadForm></UploadForm>
                             <ImageGrid setSelectedImg={setSelectedImg} />
+                            
                             {selectedImg && <Modal setSelectedImg={setSelectedImg} selectedImg={selectedImg}></Modal>}
                         </div>: 
                 <div></div>
-                }
+                }                
             </div>
         </section>
         </>
@@ -138,8 +143,27 @@ export const Profile = () => {
     
 }
 
-export const changeProfilePicture = (newProfilePicture)=>{
+export const changeProfilePicture = (newProfilePicture) =>{
+
     
+    fetch(variables.API_URL+"v1/user/"+user.id+"/photo", {
+        method: "PUT",
+        headers: {
+            'Accept':'application/json',
+            'Content-Type':'application/json',
+            'Authorization':'Bearer '+token
+        },
+        body: newProfilePicture
+    })
+        .then(response => response.text)
+        .then(text => {
+            console.log(text)
+        })
+        .catch(err => {
+            console.log(err);
+        });
+    
+
     profilePicture=newProfilePicture;
 }
 
